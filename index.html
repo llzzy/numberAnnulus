@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数字圆环</title>
+	<style>
+		*{margin:0;padding:0}
+		.stage{
+			width: 200px;
+			height: 130px;
+			margin:200px auto 0;
+			perspective:1600px;
+		}
+		#ring{
+			width: 200px;
+			height: 130px;
+			position:relative;
+			transform:rotateX(-20deg) rotateY(0deg);
+			transform-style:preserve-3d;
+			transition:all 2s ease 0s;
+		}
+		#ring li{
+			width: 200px;
+			height: 130px;
+			list-style-type:none;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+
+		#ring li:nth-of-type(1){
+			transform:rotateY(0deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(2){
+			transform:rotateY(36deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(3){
+			transform:rotateY(72deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(4){
+			transform:rotateY(108deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(5){
+			transform:rotateY(144deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(6){
+			transform:rotateY(180deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(7){
+			transform:rotateY(216deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(8){
+			transform:rotateY(252deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(9){
+			transform:rotateY(288deg) translateZ(308px);
+		}
+		#ring li:nth-of-type(10){
+			transform:rotateY(324deg) translateZ(308px);
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var ring = document.getElementById('ring');
+			var lis  = ring.getElementsByTagName('li');   //圆环的面
+
+			//当单击圆环面的时候，让对应的面转到最前面
+			for(var i=0; i<lis.length; i++){
+				lis[i].index = i;
+				lis[i].onclick = function(){
+					// alert(this.index);
+					// 单击圆环面的索引值：this.index
+					/*
+					单击圆环面的索引值            转的角度
+						0                             0
+						1                             -36deg
+						2                             -72deg
+
+						....
+						this.index                     -(this.index*36)deg
+
+					 */
+					ring.style.transform = 'rotateX(-20deg) rotateY(-'+(this.index*36)+'deg)';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="stage">
+		<!-- ul表示圆环，li表示圆环的面 -->
+		<ul id="ring">
+			<li><img src="images/48/0.png" alt=""></li>
+			<li><img src="images/48/1.png" alt=""></li>
+			<li><img src="images/48/2.png" alt=""></li>
+			<li><img src="images/48/3.png" alt=""></li>
+			<li><img src="images/48/4.png" alt=""></li>
+			<li><img src="images/48/5.png" alt=""></li>
+			<li><img src="images/48/6.png" alt=""></li>
+			<li><img src="images/48/7.png" alt=""></li>
+			<li><img src="images/48/8.png" alt=""></li>
+			<li><img src="images/48/9.png" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>
